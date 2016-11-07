@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<inf:TrackerContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:TypeArguments="ViewModels:AboutViewModel"
+             xmlns:ViewModels="clr-namespace:ConferenceTracker.ViewModel"
+             xmlns:Const="clr-namespace:ConferenceTracker.Constants;assembly=ConferenceTracker"
+             xmlns:inf="clr-namespace:ConferenceTracker.Infrastructure;assembly=ConferenceTracker"
+             x:Class="ConferenceTracker.UI.AboutPage" Title="About" Style="{StaticResource backgroundStyle}">
+  <ContentPage.Content>
+    <StackLayout Orientation="Vertical">
+      
+      <StackLayout Orientation="Vertical" IsVisible="{Binding IsBusy, Converter={x:StaticResource invertConverter}}">
+        <Label Text="{x:Static Const:Strings.About}" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="20" Margin="0,15,0,5" HeightRequest="45"/>
+        <Label Text="{Binding Info.Info}" Margin="16,0,16,0" LineBreakMode="WordWrap"/>
+      </StackLayout>
+
+      <StackLayout IsVisible="{Binding IsBusy}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+        <ActivityIndicator IsRunning="{Binding IsBusy}"  Color="{x:Static Const:Colors.Primary}" />
+        <Label Text="{x:Static Const:Strings.Loading}"/>
+        
+      </StackLayout>
+    </StackLayout>
+  </ContentPage.Content>
+</inf:TrackerContentPage>

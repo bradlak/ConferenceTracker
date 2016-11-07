@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<inf:TrackerContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:TypeArguments="ViewModels:SessionsViewModel"
+             xmlns:ViewModels="clr-namespace:ConferenceTracker.ViewModel"
+             xmlns:Converters="clr-namespace:ConferenceTracker.Converters"
+             xmlns:Const="clr-namespace:ConferenceTracker.Constants;assembly=ConferenceTracker"
+             xmlns:inf="clr-namespace:ConferenceTracker.Infrastructure;assembly=ConferenceTracker"
+             x:Class="ConferenceTracker.UI.SessionsPage" Title="Sessions" Style="{StaticResource backgroundStyle}">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <Converters:FavouriteIconConverter x:Key="favouriteIconConverter" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+    <SearchBar Placeholder="{x:Static Const:Strings.Search}"  SearchCommand="{Binding SearchCommand}" Text="{Binding SearchText}" BackgroundColor="{x:Static Const:Colors.Primary}" x:Name="searchBar" />
+    <ListView
+           x:Name="ListView"
+           ItemsSource="{Binding Sessions}"
+           IsGroupingEnabled="false"
+           HasUnevenRows ="false"
+           Style="{StaticResource trackerListView}"
+           SelectedItem="{Binding SelectedSession}"
+           IsVisible="{Binding IsBusy, Converter={x:StaticResource invertConverter}}"
+           RowHeight="80"
+           IsRefreshing="{Binding Refreshing}"
+           CachingStrategy="RetainElement">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*" />
+                <ColumnDefinition Width="1*" />
+              </Grid.ColumnDefinitions>
+              <StackLayout Orientation="Vertical" VerticalOptions="Center" Margin="16,0,0,0" Grid.Column="0">
+                <Label Text="{Binding Title}" FontSize="16" />
+                <Label Text="{Binding Dates}" FontSize="12" />
+              </StackLayout>
+              <Image Source="{Binding IsFavourite, Converter={x:StaticResource favouriteIconConverter}}" x:Name="favouriteIcon" HorizontalOptions="End" VerticalOptions="Center" Grid.Column="1" Margin="0,0,16,0" />
+            </Grid>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+    <StackLayout IsVisible="{Binding IsBusy}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+      <ActivityIndicator IsRunning="{Binding IsBusy}"  Color="{x:Static Const:Colors.Primary}" />
+      <Label Text="{x:Static Const:Strings.Loading}"/>
+    </StackLayout>
+  </StackLayout>
+</inf:TrackerContentPage>

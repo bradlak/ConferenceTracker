@@ -1,0 +1,30 @@
+﻿<Application xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Const="clr-namespace:ConferenceTracker.Constants"
+              xmlns:Converters="clr-namespace:ConferenceTracker.Converters"
+             x:Class="ConferenceTracker.App">
+  <Application.Resources>
+    <ResourceDictionary>
+      <Converters:InvertBoolConverter x:Key="invertConverter" />
+      <Converters:SelectedToBackgroundColorConverter x:Key="selectedBackgroundConverter" />
+      <Converters:NullToIsVisibleConverter x:Key="nullToVisibleConverter" />
+      
+      <Style TargetType="NavigationPage">
+        <Setter Property="BarBackgroundColor" Value="{x:Static Const:Colors.Primary}" />
+        <Setter Property="BarTextColor" Value="White" />
+      </Style>
+      <Style x:Key="backgroundStyle" TargetType="VisualElement">
+        <Setter Property="BackgroundColor" Value="White" />
+      </Style>
+      <Style TargetType="Label">
+        <Setter Property="TextColor" Value="Black" />
+      </Style>
+
+      <Style x:Key="trackerListView" TargetType="ListView">
+        <Setter Property="SeparatorColor" Value="{x:Static Const:Colors.Primary}" />
+        <Setter Property="SeparatorVisibility" Value="Default" />
+      </Style>
+      
+    </ResourceDictionary>
+  </Application.Resources>
+</Application>

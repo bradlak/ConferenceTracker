@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<inf:TrackerContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:TypeArguments="ViewModels:SpeakersViewModel"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+             xmlns:ViewModels="clr-namespace:ConferenceTracker.ViewModel"
+             xmlns:Const="clr-namespace:ConferenceTracker.Constants;assembly=ConferenceTracker"
+             xmlns:inf="clr-namespace:ConferenceTracker.Infrastructure;assembly=ConferenceTracker"
+             x:Class="ConferenceTracker.UI.SpeakersPage" Title="Speakers" Style="{StaticResource backgroundStyle}" >
+  <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+    <ListView
+           x:Name="ListView"
+           ItemsSource="{Binding Speakers}"
+           IsGroupingEnabled="false"
+           IsPullToRefreshEnabled="true"
+           RefreshCommand="{Binding Refresh}"
+           HasUnevenRows ="false"
+           Style="{StaticResource trackerListView}"
+           SelectedItem="{Binding SelectedSpeaker}"
+           IsVisible="{Binding IsBusy, Converter={x:StaticResource invertConverter}}"
+           RowHeight="100"
+           IsRefreshing="{Binding Refreshing}"
+           CachingStrategy="RetainElement">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <StackLayout>
+              <StackLayout Orientation="Horizontal" Margin="16,0,0,0"  VerticalOptions="CenterAndExpand">
+                <controls:CircleImage Source="{Binding PhotoUrl}" Aspect="AspectFit" WidthRequest="55" HeightRequest="55" />
+                <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Margin="16,0,0,0">
+                  <Label Text="{Binding FullName}" FontSize="16" />
+                  <Label Text="{Binding Company}" FontSize="10" TextColor="{x:Static Const:Colors.Primary}" />
+                </StackLayout>
+              </StackLayout>
+            </StackLayout>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+    <StackLayout IsVisible="{Binding IsBusy}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+      <ActivityIndicator IsRunning="{Binding IsBusy}"  Color="{x:Static Const:Colors.Primary}" />
+      <Label Text="{x:Static Const:Strings.Loading}"/>
+    </StackLayout>
+  </StackLayout>
+</inf:TrackerContentPage>

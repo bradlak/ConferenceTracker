@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<inf:TrackerContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:TypeArguments="ViewModels:NavigationViewModel"
+             xmlns:ViewModels="clr-namespace:ConferenceTracker.ViewModel"
+             xmlns:Ex="clr-namespace:ConferenceTracker.Extensions"
+             xmlns:Const="clr-namespace:ConferenceTracker.Constants;assembly=ConferenceTracker"
+             xmlns:inf="clr-namespace:ConferenceTracker.Infrastructure;assembly=ConferenceTracker"
+             x:Class="ConferenceTracker.UI.NavPage" Title="Master"  Icon="hamburger.png" Style="{StaticResource backgroundStyle}">
+  <ContentPage.Content>
+    <Grid VerticalOptions="FillAndExpand">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+      <RelativeLayout Grid.Row="0" BackgroundColor="{x:Static Const:Colors.Gray}">
+          <Image Source="{Ex:ImageResource ConferenceTracker.Images.conference.png}" Aspect="AspectFill" HorizontalOptions="CenterAndExpand" />
+        <Label FontSize="18" Text="Conference Tracker" TextColor="White"
+          RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0,Constant=150}"
+            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=16}" />
+      </RelativeLayout>
+      <ListView x:Name="listView" Grid.Row="1" ItemsSource="{Binding MenuItems}" SelectedItem="{Binding SelectedItem}"  VerticalOptions="StartAndExpand" SeparatorVisibility="Default" SeparatorColor="{x:Static Const:Colors.Gray}">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <StackLayout Orientation="Horizontal" BackgroundColor="{Binding IsSelected, Converter={x:StaticResource selectedBackgroundConverter}}">
+                <Image Source="{Binding IconSource}" Margin="16,0,0,0" />
+                <Label Text="{Binding DisplayName}" TextColor="Black" VerticalOptions="CenterAndExpand" Margin="16,0,0,0" />
+              </StackLayout>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </Grid>
+  </ContentPage.Content>
+</inf:TrackerContentPage>
