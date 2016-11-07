@@ -14,4 +14,4 @@ It uses:
 
 Splash                                                                              |  Navigation
 :----------------------------------------------------------------------------------:|:-------------------------:
-![](https://github.com/bradlak/ConferenceTracker/blob/master/Screenshots/splash.jpg) |![](https://github.com/bradlak/ConferenceTracker/blob/master/Screenshots/title.jpg)
+![](https://github.com/bradlak/ConferenceTracker/blob/master/Screenshots/splash.png) |![](https://github.com/bradlak/ConferenceTracker/blob/master/Screenshots/title.png)
