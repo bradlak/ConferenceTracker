@@ -20,3 +20,7 @@ Splash |  Navigation  |Sessions | Session info
 Events |  Loading  |Speakers | Speaker info
 ---|---|---|---
 <img src="https://github.com/bradlak/ConferenceTracker/blob/master/Screenshots/events.png" width="200"> |<img src="https://github.com/bradlak/ConferenceTracker/blob/master/Screenshots/loading.png" width="200"> |<img src="https://github.com/bradlak/ConferenceTracker/blob/master/Screenshots/speakers.png" width="200"> |<img src="https://github.com/bradlak/ConferenceTracker/blob/master/Screenshots/speaker.png" width="200">|
+
+
+## Credits
+Copyright &copy; Bartosz Radlak.</br> All rights reserved
