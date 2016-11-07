@@ -12,6 +12,7 @@ It uses:
 
 </br>
 
-Splash                                                                              |  Navigation
-:----------------------------------------------------------------------------------:|:-------------------------:
-![](https://github.com/bradlak/ConferenceTracker/blob/master/Screenshots/splash.png) |![](https://github.com/bradlak/ConferenceTracker/blob/master/Screenshots/title.png)
+
+Splash                                                                                                  |  Navigation
+:------------------------------------------------------------------------------------------------------:|:-------------------------:
+<img src="https://github.com/bradlak/ConferenceTracker/blob/master/Screenshots/splash.png" width="200"> |<img src="(https://github.com/bradlak/ConferenceTracker/blob/master/Screenshots/title.pngg" width="200">
