@@ -3,15 +3,20 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ConferenceTracker.Data;
+using ConferenceTracker.Infrastructure;
 
 namespace ConferenceTracker.Services.Mock
 {
     public class EventsService : IEventsService
     {
-        public Task<IEnumerable<Event>> GetAllEvents()
+        public Task<GeneralResponse<IEnumerable<Event>>> GetAllEvents()
         {
             var data = GetData();
-            return Task.FromResult(data);
+            return Task.FromResult(new GeneralResponse<IEnumerable<Event>>()
+            {
+                IsSuccess = true,
+                Value = data
+            });
         }
 
         private IEnumerable<Event> GetData()

@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ConferenceTracker.Data;
+using ConferenceTracker.Infrastructure;
 
 namespace ConferenceTracker.Services.Mock
 {
     public class SpeakersService : ISpeakersService
     {
-        public Task<IEnumerable<Speaker>> GetAllSpeakers()
+        public Task<GeneralResponse<IEnumerable<Speaker>>> GetAllSpeakers()
         {
-            return Task.FromResult<IEnumerable<Speaker>>(GetData());
+            return Task.FromResult(new GeneralResponse<IEnumerable<Speaker>>()
+            {
+                IsSuccess = true,
+                Value = GetData()
+            });
         }
 
         public Task<IEnumerable<Speaker>> GetContainingSpeakers(params int[] ids)

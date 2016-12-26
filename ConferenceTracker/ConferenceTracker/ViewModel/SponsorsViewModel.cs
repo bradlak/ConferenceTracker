@@ -26,7 +26,9 @@ namespace ConferenceTracker.ViewModel
             }
         }
 
-        public SponsorsViewModel(ISponsorsService service)
+        public SponsorsViewModel(
+            ISponsorsService service,
+            IServiceCaller serviceCaller) : base(serviceCaller)
         {
             this.service = service;
             Sponsors = new ObservableCollection<Sponsor>();

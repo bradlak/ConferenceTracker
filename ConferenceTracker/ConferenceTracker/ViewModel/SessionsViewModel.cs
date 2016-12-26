@@ -57,7 +57,9 @@ namespace ConferenceTracker.ViewModel
             }
         }
 
-        public SessionsViewModel(ISessionsService service)
+        public SessionsViewModel(
+            ISessionsService service,
+            IServiceCaller serviceCaller) : base(serviceCaller)
         {
             this.service = service;
             Sessions = new ObservableCollection<Session>();

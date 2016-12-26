@@ -1,4 +1,5 @@
 ﻿using ConferenceTracker.Infrastructure;
+using ConferenceTracker.Services;
 using ConferenceTracker.ViewModel;
 using System;
 using System.Collections.Generic;

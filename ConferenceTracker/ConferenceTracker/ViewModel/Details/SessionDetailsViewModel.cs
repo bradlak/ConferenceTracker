@@ -14,6 +14,13 @@ namespace ConferenceTracker.ViewModel.Details
 
         private ICommand toggleFavouriteCommand;
 
+
+        public SessionDetailsViewModel(
+            IServiceCaller serviceCaller) : base(serviceCaller)
+        {
+
+        }
+
         public Session Session
         {
             get

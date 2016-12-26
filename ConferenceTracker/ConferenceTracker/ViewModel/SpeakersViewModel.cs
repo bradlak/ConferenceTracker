@@ -35,7 +35,9 @@ namespace ConferenceTracker.ViewModel
             }
         }
 
-        public SpeakersViewModel(ISpeakersService service)
+        public SpeakersViewModel(
+            ISpeakersService service,
+            IServiceCaller serviceCaller) : base(serviceCaller)
         {
             this.service = service;
             Speakers = new ObservableCollection<Speaker>();
@@ -79,9 +81,12 @@ namespace ConferenceTracker.ViewModel
         {
             IsBusy = true;
 
-            Speakers = new ObservableCollection<Speaker>(await service.GetAllSpeakers());
+            var data = await ServiceCaller.CallService(service.GetAllSpeakers);
 
-            await Task.Delay(2000);
+            if (data.IsSuccess)
+            {
+                Speakers = new ObservableCollection<Speaker>(data.Value);
+            }
 
             IsBusy = false;
             Refreshing = false;
@@ -89,9 +94,12 @@ namespace ConferenceTracker.ViewModel
 
         public async Task RefreshSpeakersAsync()
         {
-            await Task.Delay(2000);
+            var data = await ServiceCaller.CallService(service.GetAllSpeakers);
 
-            Speakers = new ObservableCollection<Speaker>(await service.GetAllSpeakers());
+            if (data.IsSuccess)
+            {
+                Speakers = new ObservableCollection<Speaker>(data.Value);
+            }
 
             Refreshing = false;
         }

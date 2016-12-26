@@ -1,4 +1,6 @@
-﻿using Microsoft.Practices.Unity;
+﻿using System;
+using ConferenceTracker.Messages;
+using Microsoft.Practices.Unity;
 using Xamarin.Forms;
 
 namespace ConferenceTracker.Infrastructure
@@ -17,6 +19,12 @@ namespace ConferenceTracker.Infrastructure
             viewModel = App.Container.Resolve<T>();
             viewModel.Navigator = Navigation;
             BindingContext = viewModel;
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            ViewModel.Dispose();
         }
     }
 }

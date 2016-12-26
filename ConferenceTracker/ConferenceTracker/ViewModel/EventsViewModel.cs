@@ -3,6 +3,7 @@ using ConferenceTracker.Infrastructure;
 using ConferenceTracker.Services.Interfaces;
 using GalaSoft.MvvmLight.Command;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -16,7 +17,9 @@ namespace ConferenceTracker.ViewModel
 
         private ICommand loadEventsCommand;
 
-        public EventsViewModel(IEventsService service)
+        public EventsViewModel(
+            IEventsService service,
+            IServiceCaller serviceCaller) : base(serviceCaller)
         {
             this.service = service;
             Events = new ObservableCollection<Event>();
@@ -48,9 +51,12 @@ namespace ConferenceTracker.ViewModel
         {
             IsBusy = true;
 
-            await Task.Delay(2000);
+            var data = await ServiceCaller.CallService(service.GetAllEvents);
 
-            Events = new ObservableCollection<Event>(await service.GetAllEvents());
+            if (data.IsSuccess)
+            {
+                Events = new ObservableCollection<Event>(data.Value);
+            }
 
             IsBusy = false;
             Refreshing = false;

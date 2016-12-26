@@ -15,7 +15,9 @@ namespace ConferenceTracker.ViewModel
 
         private ICommand loadInfoCommand;
 
-        public AboutViewModel(IInfoService service)
+        public AboutViewModel(
+            IInfoService service,
+            IServiceCaller serviceCaller) : base(serviceCaller)
         {
             this.service = service;
         }

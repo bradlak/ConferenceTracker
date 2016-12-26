@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace ConferenceTracker.Data
 {
@@ -9,6 +10,7 @@ namespace ConferenceTracker.Data
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
 
+        [JsonIgnore]
         public string Dates
         {
             get
