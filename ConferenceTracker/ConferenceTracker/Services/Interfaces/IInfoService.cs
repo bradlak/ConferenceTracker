@@ -1,10 +1,11 @@
 ﻿using ConferenceTracker.Data;
+using ConferenceTracker.Infrastructure;
 using System.Threading.Tasks;
 
 namespace ConferenceTracker.Services.Interfaces
 {
     public interface IInfoService
     {
-        Task<ConferenceInfo> GetInfo();
+        Task<GeneralResponse<ConferenceInfo>> GetInfo();
     }
 }

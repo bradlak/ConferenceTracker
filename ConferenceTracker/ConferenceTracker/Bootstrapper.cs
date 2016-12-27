@@ -23,10 +23,10 @@ namespace ConferenceTracker
             container.RegisterType<IServiceCaller, ServiceCaller>();
 
             // services registrations
-            container.RegisterType<ISponsorsService, Mock.SponsorsService>();
+            container.RegisterType<ISponsorsService, SponsorsService>();
             container.RegisterType<ISpeakersService, SpeakersService>();
-            container.RegisterType<ISessionsService, Mock.SessionsService>();
-            container.RegisterType<IInfoService, Mock.InfoService>();
+            container.RegisterType<ISessionsService, SessionsService>();
+            container.RegisterType<IInfoService, InfoService>();
             container.RegisterType<IEventsService, EventsService>();
 
             // main view models & pages registrations

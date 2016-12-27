@@ -3,24 +3,24 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ConferenceTracker.Data;
-using Newtonsoft.Json;
-using ConferenceTracker.Configurations;
 using ConferenceTracker.Infrastructure;
+using ConferenceTracker.Configurations;
+using Newtonsoft.Json;
 
 namespace ConferenceTracker.Services
 {
-    public class EventsService : BaseService, IEventsService
+    public class SessionsService : BaseService, ISessionsService
     {
-        public EventsService(IApiConfiguration configuration)
+        public SessionsService(IApiConfiguration configuration) 
             : base(configuration)
         {
         }
 
-        public async Task<GeneralResponse<IEnumerable<Event>>> GetAllEvents()
+        public async Task<GeneralResponse<IEnumerable<Session>>> GetAllSessions()
         {
-            string endpoint = "api/events";
+            string endpoint = "api/sessions";
 
-            GeneralResponse<IEnumerable<Event>> result = new GeneralResponse<IEnumerable<Event>>();
+            GeneralResponse<IEnumerable<Session>> result = new GeneralResponse<IEnumerable<Session>>();
 
             var uri = new Uri(configuration.ApiBaseUri + endpoint);
 
@@ -30,7 +30,7 @@ namespace ConferenceTracker.Services
                 result.IsSuccess = true;
 
                 var content = await response.Content.ReadAsStringAsync();
-                var deserialized = JsonConvert.DeserializeObject<List<Event>>(content);
+                var deserialized = JsonConvert.DeserializeObject<List<Session>>(content);
                 result.Value = deserialized;
             }
 

@@ -1,4 +1,5 @@
 ﻿using ConferenceTracker.Data;
+using ConferenceTracker.Infrastructure;
 using ConferenceTracker.Services.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -7,10 +8,12 @@ namespace ConferenceTracker.Services.Mock
 {
     public class SponsorsService : ISponsorsService
     {
-        public Task<IEnumerable<Sponsor>> GetAllSponsors()
+        public Task<GeneralResponse<IEnumerable<Sponsor>>> GetAllSponsors()
         {
-            return Task.FromResult<IEnumerable<Sponsor>>(
-                new List<Sponsor>() {
+            return Task.FromResult(new GeneralResponse<IEnumerable<Sponsor>>()
+            {
+                IsSuccess = true,
+                Value = new List<Sponsor>() {
                     new Sponsor()
                     {
                        Id = 0,
@@ -31,7 +34,7 @@ namespace ConferenceTracker.Services.Mock
                         ImageUrl = @"http://thumbs.ebaystatic.com/images/m/mx1--oI5z9SLuCogVvbf-lg/s-l225.jpg",
                         Name = "Catepillar Inc.",
                         Level = SponsorLevel.Silver
-                        
+
                     },
                       new Sponsor()
                     {
@@ -47,7 +50,8 @@ namespace ConferenceTracker.Services.Mock
                         Name = "Mitsubishi Group",
                         Level = SponsorLevel.Bronze
                     }
-                });
+                }
+            });      
         }
     }
 }

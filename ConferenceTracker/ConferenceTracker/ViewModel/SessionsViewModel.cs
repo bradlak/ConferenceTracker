@@ -110,10 +110,13 @@ namespace ConferenceTracker.ViewModel
         {
             IsBusy = true;
 
-            await Task.Delay(2000);
+            var data = await ServiceCaller.CallService(service.GetAllSessions);
 
-            Sessions = new ObservableCollection<Session>(await service.GetAllSessions());
-            allSessions = new List<Session>(Sessions.ToList());
+            if (data.IsSuccess)
+            {
+                Sessions = new ObservableCollection<Session>(data.Value);
+                allSessions = new List<Session>(Sessions.ToList());
+            }
 
             IsBusy = false;
             Refreshing = false;

@@ -9,8 +9,6 @@ namespace ConferenceTracker.Services.Interfaces
     {
         Task<GeneralResponse<IEnumerable<Speaker>>> GetAllSpeakers();
 
-        Task<Speaker> GetSpeakerById(int id);
-
-        Task<IEnumerable<Speaker>> GetContainingSpeakers(params int[] ids);
+        Task<GeneralResponse<Speaker>> GetSpeakerById(int id);
     }
 }

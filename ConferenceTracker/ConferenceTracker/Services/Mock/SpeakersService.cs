@@ -18,18 +18,15 @@ namespace ConferenceTracker.Services.Mock
             });
         }
 
-        public Task<IEnumerable<Speaker>> GetContainingSpeakers(params int[] ids)
-        {
-            var data = GetData();
-            var result = data.Where(z => ids.Contains(z.Id));
-            return Task.FromResult<IEnumerable<Speaker>>(result);
-        }
-
-        public Task<Speaker> GetSpeakerById(int id)
+        public Task<GeneralResponse<Speaker>> GetSpeakerById(int id)
         {
             var data = GetData();
             var result = data.Single(z => z.Id == id);
-            return Task.FromResult<Speaker>(result);
+            return Task.FromResult(new GeneralResponse<Speaker>()
+            {
+                IsSuccess = true,
+                Value = result
+            });
         }
 
         IEnumerable<Speaker> GetData()

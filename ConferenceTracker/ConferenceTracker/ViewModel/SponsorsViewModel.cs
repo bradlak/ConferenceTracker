@@ -50,8 +50,12 @@ namespace ConferenceTracker.ViewModel
         {
             IsBusy = true;
 
-            Sponsors = new ObservableCollection<Sponsor>(await service.GetAllSponsors());
-            await Task.Delay(2000);
+            var data = await ServiceCaller.CallService(service.GetAllSponsors);
+
+            if (data.IsSuccess)
+            {
+                Sponsors = new ObservableCollection<Sponsor>(data.Value);
+            }
 
             IsBusy = false;
         }

@@ -48,9 +48,11 @@ namespace ConferenceTracker.ViewModel
         {
             IsBusy = true;
 
-            await Task.Delay(1000);
-
-            Info = await service.GetInfo();
+            var data = await ServiceCaller.CallService(service.GetInfo);
+            if (data.IsSuccess)
+            {
+                Info = data.Value;
+            }
 
             IsBusy = false;
             Refreshing = false;

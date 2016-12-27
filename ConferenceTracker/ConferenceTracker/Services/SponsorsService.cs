@@ -1,26 +1,28 @@
 ﻿using ConferenceTracker.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using ConferenceTracker.Data;
-using Newtonsoft.Json;
 using ConferenceTracker.Configurations;
 using ConferenceTracker.Infrastructure;
+using Newtonsoft.Json;
 
 namespace ConferenceTracker.Services
 {
-    public class EventsService : BaseService, IEventsService
+    public class SponsorsService : BaseService, ISponsorsService
     {
-        public EventsService(IApiConfiguration configuration)
+        public SponsorsService(IApiConfiguration configuration) 
             : base(configuration)
         {
         }
 
-        public async Task<GeneralResponse<IEnumerable<Event>>> GetAllEvents()
+        public async Task<GeneralResponse<IEnumerable<Sponsor>>> GetAllSponsors()
         {
-            string endpoint = "api/events";
+            string endpoint = "api/sponsors";
 
-            GeneralResponse<IEnumerable<Event>> result = new GeneralResponse<IEnumerable<Event>>();
+            GeneralResponse<IEnumerable<Sponsor>> result = new GeneralResponse<IEnumerable<Sponsor>>();
 
             var uri = new Uri(configuration.ApiBaseUri + endpoint);
 
@@ -30,7 +32,7 @@ namespace ConferenceTracker.Services
                 result.IsSuccess = true;
 
                 var content = await response.Content.ReadAsStringAsync();
-                var deserialized = JsonConvert.DeserializeObject<List<Event>>(content);
+                var deserialized = JsonConvert.DeserializeObject<List<Sponsor>>(content);
                 result.Value = deserialized;
             }
 

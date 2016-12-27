@@ -5,23 +5,15 @@ using System.Threading.Tasks;
 using ConferenceTracker.Data;
 using ConferenceTracker.Infrastructure;
 using ConferenceTracker.Configurations;
-using System.Net.Http;
 using Newtonsoft.Json;
 
 namespace ConferenceTracker.Services
 {
-    public class SpeakersService : ISpeakersService
+    public class SpeakersService : BaseService, ISpeakersService
     {
-        IApiConfiguration configuration;
-
-        HttpClient client;
-
         public SpeakersService(IApiConfiguration configuration)
+            : base (configuration)
         {
-            this.configuration = configuration;
-
-            client = new HttpClient();
-            client.MaxResponseContentBufferSize = 256000;
         }
 
         public async Task<GeneralResponse<IEnumerable<Speaker>>> GetAllSpeakers()
@@ -30,7 +22,6 @@ namespace ConferenceTracker.Services
 
             GeneralResponse<IEnumerable<Speaker>> result = new GeneralResponse<IEnumerable<Speaker>>();
 
-            List<Event> events = new List<Event>();
             var uri = new Uri(configuration.ApiBaseUri + endpoint);
             
             var response = await client.GetAsync(uri);
@@ -46,14 +37,25 @@ namespace ConferenceTracker.Services
             return result;
         }
 
-        public Task<IEnumerable<Speaker>> GetContainingSpeakers(params int[] ids)
+        public async Task<GeneralResponse<Speaker>> GetSpeakerById(int id)
         {
-            throw new NotImplementedException();
-        }
+            string endpoint = "api/speakers/" + id;
 
-        public Task<Speaker> GetSpeakerById(int id)
-        {
-            throw new NotImplementedException();
+            GeneralResponse<Speaker> result = new GeneralResponse<Speaker>();
+
+            var uri = new Uri(configuration.ApiBaseUri + endpoint);
+
+            var response = await client.GetAsync(uri);
+            if (response.IsSuccessStatusCode)
+            {
+                result.IsSuccess = true;
+
+                var content = await response.Content.ReadAsStringAsync();
+                var deserialized = JsonConvert.DeserializeObject<Speaker>(content);
+                result.Value = deserialized;
+            }
+
+            return result;
         }
     }
 }
