@@ -6,6 +6,7 @@ Application for tracking conference in Xamarin.Forms
 It uses:
 * Xamarin.Forms
 * Unity IoC container
+* Connectivity plugin
 * ImageCircle plugin
 * MVVM pattern
 * MVVM Light Toolkit
