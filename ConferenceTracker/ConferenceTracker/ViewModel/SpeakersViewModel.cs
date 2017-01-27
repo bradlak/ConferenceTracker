@@ -56,7 +56,7 @@ namespace ConferenceTracker.ViewModel
         {
             get
             {
-                refresh = refresh ?? new RelayCommand(async () => await RefreshSpeakersAsync());
+                refresh = refresh ?? new RelayCommand(async () => await LoadSpeakersAsync());
                 return refresh;
             }
         }
@@ -89,18 +89,6 @@ namespace ConferenceTracker.ViewModel
             }
 
             IsBusy = false;
-            Refreshing = false;
-        }
-
-        public async Task RefreshSpeakersAsync()
-        {
-            var data = await ServiceCaller.CallService(service.GetAllSpeakers);
-
-            if (data.IsSuccess)
-            {
-                Speakers = new ObservableCollection<Speaker>(data.Value);
-            }
-
             Refreshing = false;
         }
 

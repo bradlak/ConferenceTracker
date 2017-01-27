@@ -18,8 +18,11 @@ namespace ConferenceTracker
             var container = new UnityContainer();
 
             // environment registration
+#if DEBUG
             container.RegisterType<IApiConfiguration, ApiTestConfiguration>();
-
+#else
+            container.RegisterType<IApiConfiguration, ApiReleaseConfiguration>();
+#endif
             container.RegisterType<IServiceCaller, ServiceCaller>();
 
             // services registrations
@@ -28,10 +31,11 @@ namespace ConferenceTracker
             container.RegisterType<ISessionsService, SessionsService>();
             container.RegisterType<IInfoService, InfoService>();
             container.RegisterType<IEventsService, EventsService>();
+            //RegisterStubbedServices(container);  // uncomment to use fake data without calling api
 
             // main view models & pages registrations
             container.RegisterType<SponsorsViewModel>(new ContainerControlledLifetimeManager());
-            container.RegisterType<EventsViewModel>();
+            container.RegisterType<EventsViewModel>(new ContainerControlledLifetimeManager());
             container.RegisterType<AboutViewModel>(new ContainerControlledLifetimeManager());
             container.RegisterType<FeedsViewModel>(new ContainerControlledLifetimeManager());
             container.RegisterType<NavigationViewModel>(new ContainerControlledLifetimeManager());
@@ -56,6 +60,15 @@ namespace ConferenceTracker
             // additional registrations
             container.RegisterType<MainPage>();
             return container;
+        }
+
+        private static void RegisterStubbedServices(UnityContainer container)
+        {
+            container.RegisterType<ISponsorsService, Mock.SponsorsService>();
+            container.RegisterType<ISpeakersService, Mock.SpeakersService>();
+            container.RegisterType<ISessionsService, Mock.SessionsService>();
+            container.RegisterType<IInfoService, Mock.InfoService>();
+            container.RegisterType<IEventsService, Mock.EventsService>();
         }
     }
 }

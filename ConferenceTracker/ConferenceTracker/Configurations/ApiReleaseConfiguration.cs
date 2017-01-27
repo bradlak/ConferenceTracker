@@ -1,12 +1,12 @@
 ﻿namespace ConferenceTracker.Configurations
 {
-    public class ApiTestConfiguration : IApiConfiguration
+    public class ApiReleaseConfiguration : IApiConfiguration
     {
         public string ApiBaseUri
         {
             get
             {
-                return "http://192.168.1.105:60000/";
+                return "azure website";
             }
         }
     }

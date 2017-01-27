@@ -19,6 +19,8 @@
            ItemsSource="{Binding Sessions}"
            IsGroupingEnabled="false"
            HasUnevenRows ="false"
+           IsPullToRefreshEnabled="true"
+           RefreshCommand="{Binding Refresh}"
            Style="{StaticResource trackerListView}"
            SelectedItem="{Binding SelectedSession}"
            IsVisible="{Binding IsBusy, Converter={x:StaticResource invertConverter}}"

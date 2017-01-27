@@ -16,6 +16,8 @@ namespace ConferenceTracker.ViewModel
 
         private ICommand loadSponsorsCommand;
 
+        private ICommand refresh;
+
         public ObservableCollection<Sponsor> Sponsors
         {
             get { return sponsors; }
@@ -43,6 +45,15 @@ namespace ConferenceTracker.ViewModel
                     loadSponsorsCommand = new RelayCommand(async () => await LoadSponsorsAsync());
                 }
                 return loadSponsorsCommand;
+            }
+        }
+
+        public ICommand Refresh
+        {
+            get
+            {
+                refresh = refresh ?? new RelayCommand(async () => await LoadSponsorsAsync());
+                return refresh;
             }
         }
 

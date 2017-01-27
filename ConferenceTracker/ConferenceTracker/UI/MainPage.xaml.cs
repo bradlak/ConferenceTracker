@@ -2,7 +2,6 @@
 using Microsoft.Practices.Unity;
 using Xamarin.Forms;
 using GalaSoft.MvvmLight.Messaging;
-using System.Linq;
 using ConferenceTracker.Infrastructure;
 
 namespace ConferenceTracker.UI

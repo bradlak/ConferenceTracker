@@ -26,6 +26,8 @@ namespace ConferenceTracker.ViewModel
 
         private ICommand searchCommand;
 
+        private ICommand refresh;
+
         private string searchText;
 
         public ObservableCollection<Session> Sessions
@@ -70,8 +72,17 @@ namespace ConferenceTracker.ViewModel
         {
             get
             {
-                loadSessionsCommand = loadSessionsCommand ?? new RelayCommand(async () => await LoadSessions());
+                loadSessionsCommand = loadSessionsCommand ?? new RelayCommand(async () => await LoadSessionsAsync());
                 return loadSessionsCommand;
+            }
+        }
+
+        public ICommand Refresh
+        {
+            get
+            {
+                refresh = refresh ?? new RelayCommand(async () => await LoadSessionsAsync());
+                return refresh;
             }
         }
 
@@ -106,7 +117,7 @@ namespace ConferenceTracker.ViewModel
                 Sessions = new ObservableCollection<Session>(filtered);
         }
 
-        public async Task LoadSessions()
+        public async Task LoadSessionsAsync()
         {
             IsBusy = true;
 

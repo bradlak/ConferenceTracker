@@ -5,7 +5,6 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using GalaSoft.MvvmLight;
 
 namespace ConferenceTracker.ViewModel
 {
@@ -17,8 +16,7 @@ namespace ConferenceTracker.ViewModel
 
         public ObservableCollection<MenuItem> MenuItems { get; set; }
 
-        public NavigationViewModel(
-            IServiceCaller serviceCaller) : base(serviceCaller)
+        public NavigationViewModel(IServiceCaller caller) : base(caller,false)
         {
             MenuItems = new ObservableCollection<MenuItem>();
 

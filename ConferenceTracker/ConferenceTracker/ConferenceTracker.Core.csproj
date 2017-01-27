@@ -39,6 +39,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Configurations\ApiReleaseConfiguration.cs" />
     <Compile Include="Configurations\ApiTestConfiguration.cs" />
     <Compile Include="Configurations\IApiConfiguration.cs" />
     <Compile Include="Constants\Strings.cs" />

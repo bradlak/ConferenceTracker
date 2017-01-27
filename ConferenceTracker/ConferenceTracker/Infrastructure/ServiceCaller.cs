@@ -24,7 +24,7 @@ namespace ConferenceTracker.Infrastructure
             }
             catch(Exception ex)
             {
-                MessagingCenter.Send(this, MessagesConsts.ApiCallingError, ex);
+                MessagingCenter.Send(this, MessagesConsts.ApiCallingError, ex);                
             }
 
             return result;

@@ -1,6 +1,4 @@
-﻿using System;
-using ConferenceTracker.Messages;
-using Microsoft.Practices.Unity;
+﻿using Microsoft.Practices.Unity;
 using Xamarin.Forms;
 
 namespace ConferenceTracker.Infrastructure
@@ -19,6 +17,7 @@ namespace ConferenceTracker.Infrastructure
             viewModel = App.Container.Resolve<T>();
             viewModel.Navigator = Navigation;
             BindingContext = viewModel;
+            if (ViewModel.ShouldSubscribe) ViewModel.SubscribeMessages();
         }
 
         protected override void OnDisappearing()

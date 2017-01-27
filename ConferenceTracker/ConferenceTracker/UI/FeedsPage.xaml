@@ -5,5 +5,5 @@
              xmlns:ViewModels="clr-namespace:ConferenceTracker.ViewModel"
              xmlns:inf="clr-namespace:ConferenceTracker.Infrastructure;assembly=ConferenceTracker"
              x:Class="ConferenceTracker.UI.FeedsPage" Title="Feeds" Style="{StaticResource backgroundStyle}">
-  <Label Text="FeedsPage" VerticalOptions="Center" HorizontalOptions="Center"/>
+  <Label Text="Home Page" VerticalOptions="Center" HorizontalOptions="Center"/>
 </inf:TrackerContentPage>

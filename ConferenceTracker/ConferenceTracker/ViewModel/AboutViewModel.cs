@@ -39,12 +39,12 @@ namespace ConferenceTracker.ViewModel
         {
             get
             {
-                loadInfoCommand = loadInfoCommand ?? new RelayCommand(async () => await LoadInfo());
+                loadInfoCommand = loadInfoCommand ?? new RelayCommand(async () => await LoadInfoAsync());
                 return loadInfoCommand;
             }
         }
 
-        private async Task LoadInfo()
+        private async Task LoadInfoAsync()
         {
             IsBusy = true;
 

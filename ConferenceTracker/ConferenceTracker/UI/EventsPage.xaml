@@ -12,11 +12,14 @@
              x:Name="ListView"
              ItemsSource="{Binding Events}"
              IsGroupingEnabled="false"
+             IsPullToRefreshEnabled="true"
              SeparatorColor="{x:Static Const:Colors.Primary}"
+             RefreshCommand="{Binding Refresh}"
              SeparatorVisibility="Default"
              HasUnevenRows ="false"
              IsVisible="{Binding IsBusy, Converter={x:StaticResource invertConverter}}"
              RowHeight="120"
+             IsRefreshing="{Binding Refreshing}"
              CachingStrategy="RetainElement">
         <ListView.ItemTemplate>
           <DataTemplate>
